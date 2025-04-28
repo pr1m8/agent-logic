@@ -35,3 +35,24 @@ venv/
 # IDEs
 .idea/
 .vscode/
+# Python
+__pycache__/
+*.py[cod]
+.build/
+dist/
+
+# Poetry
+.venv/
+poetry.lock
+
+# Nox
+.nox/
+
+# Docs
+/docs/build/
+/docs/source/generated/
+
+# System
+.DS_Store
+.vscode/
+.idea/
