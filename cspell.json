@@ -5,5 +5,5 @@
     "dictionaries": [],
     "words": [],
     "ignoreWords": ["LPAREN", "RPAREN"],
-    "import": []
+    "import": ["agent_logic"]
 }
