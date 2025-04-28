@@ -1,0 +1,27 @@
+{
+    "steps": [
+        {
+            "step_number": 1,
+            "statement": {
+                "type": "Proposition",
+                "name": "P"
+            },
+            "justification": "Given",
+            "dependencies": null
+        },
+        {
+            "step_number": 2,
+            "statement": {
+                "type": "Not",
+                "operand": {
+                    "type": "Proposition",
+                    "name": "Q"
+                }
+            },
+            "justification": "Modus Ponens",
+            "dependencies": [
+                1
+            ]
+        }
+    ]
+}

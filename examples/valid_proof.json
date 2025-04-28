@@ -1,0 +1,42 @@
+{
+    "steps": [
+        {
+            "step_number": 1,
+            "statement": {
+                "type": "Proposition",
+                "name": "P"
+            },
+            "justification": "Given",
+            "dependencies": null
+        },
+        {
+            "step_number": 2,
+            "statement": {
+                "type": "BinaryOp",
+                "left": {
+                    "type": "Proposition",
+                    "name": "P"
+                },
+                "right": {
+                    "type": "Proposition",
+                    "name": "Q"
+                },
+                "operator": "IMPLIES"
+            },
+            "justification": "Given",
+            "dependencies": null
+        },
+        {
+            "step_number": 3,
+            "statement": {
+                "type": "Proposition",
+                "name": "Q"
+            },
+            "justification": "Modus Ponens",
+            "dependencies": [
+                1,
+                2
+            ]
+        }
+    ]
+}
