@@ -1,5 +1,5 @@
 [project]
-name = "logic"
+name = "agent-logic"
 version = "0.1.0"
 authors = [{ name = "Your Name", email = "you@example.com" }]
 license = { text = "MIT" }
@@ -19,13 +19,11 @@ sphinxcontrib-jquery = "^4.1"
 sphinx-sitemap = "^2.6.0"
 sphinxcontrib-mermaid = "^1.0.0"
 sphinxcontrib-youtube = "^1.4.1"
-sphinx-press-theme = "^0.9.1"
 sphinx-autoapi = "^3.6.0"
 sphinx-copybutton = "^0.5.2"
 sphinx-togglebutton = "^0.3.2"
 sphinx-autodoc-typehints = "^3.1.0"
 sphinx-rtd-theme = "^3.0.2"
-sphinx-tabs = "^3.4.7"
 sphinx-autodoc2 = "^0.5.0"
 sphinx-autobuild = "^2024.10.3"
 sphinx-design = "^0.6.1"
@@ -45,7 +43,7 @@ sphinxcontrib-versioning = "^2.2.1"
 sphinxext-opengraph = "^0.10.0"
 sphinx-needs = "^5.1.0"
 nox = "^2025.2.9"
-
+matplotlib = "^3.10.1"
 
 
 [tool.poetry.group.dev.dependencies]
