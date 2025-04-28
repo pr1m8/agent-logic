@@ -1,10 +1,16 @@
+import logging
 import unittest
 
 from logic.core.operations import BinaryOp, Not, Proposition
 from logic.proofs.proof_system import Proof, ProofStep
+from logic.utils.logger import set_global_log_level
 
 
 class TestProofSystem(unittest.TestCase):
+
+    def setUp(self):
+        # Set log level to ERROR for tests to minimize output
+        set_global_log_level(logging.ERROR)
 
     def test_proof_validation(self):
         """Test that proof validation correctly follows inference rules."""
@@ -21,7 +27,7 @@ class TestProofSystem(unittest.TestCase):
             dependencies=[1, 2],
         )
 
-        proof = Proof(steps=[step1, step2, step3])
+        proof = Proof(steps=[step1, step2, step3], debug=True)
         self.assertTrue(proof.is_valid())
 
     def test_invalid_proof(self):
@@ -38,5 +44,5 @@ class TestProofSystem(unittest.TestCase):
             dependencies=[1],
         )
 
-        proof = Proof(steps=[step1, step2])
+        proof = Proof(steps=[step1, step2], debug=True)
         self.assertFalse(proof.is_valid())

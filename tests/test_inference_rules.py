@@ -19,18 +19,18 @@ class TestInferenceRules(unittest.TestCase):
         """Test Modus Tollens: ¬Q, (P → Q) ⊢ ¬P."""
         p = Proposition(name="P")
         q = Proposition(name="Q")
-        not_q = Not(q)
+        not_q = Not(operand=q)
         p_implies_q = BinaryOp(left=p, right=q, operator="IMPLIES")
 
         result = InferenceRules.modus_tollens(not_q, p_implies_q)
-        self.assertEqual(result, Not(p))
+        self.assertEqual(result, Not(operand=p))
 
     def test_disjunctive_syllogism(self):
         """Test Disjunctive Syllogism: (P ∨ Q), ¬P ⊢ Q."""
         p = Proposition(name="P")
         q = Proposition(name="Q")
         p_or_q = BinaryOp(left=p, right=q, operator="OR")
-        not_p = Not(p)
+        not_p = Not(operand=p)
 
         result = InferenceRules.disjunctive_syllogism(p_or_q, not_p)
         self.assertEqual(result, q)
