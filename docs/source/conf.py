@@ -9,14 +9,13 @@
 import os
 import sys
 
-
 project = "agent-logic"
 copyright = "2025, William R. Astley (Pr1m8)"
 author = "William R. Astley (Pr1m8)"
 release = "0.1.0"
 
 
-sys.path.insert(0, os.path.abspath("../../src"))
+sys.path.insert(0, os.path.abspath("../../agent_logic"))
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
@@ -43,6 +42,7 @@ extensions = [
     "sphinx_sitemap",  # sitemap.xml for SEO
 ]
 
+html_baseurl = "https://agent-logic.readthedocs.io/en/latest/"
 
 templates_path = ["_templates"]
 exclude_patterns = []

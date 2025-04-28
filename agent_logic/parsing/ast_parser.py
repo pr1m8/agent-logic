@@ -3,7 +3,7 @@ from typing import Dict
 from agent_logic.core.base import LogicalExpression
 from agent_logic.core.functions import Function, Relation
 from agent_logic.core.operations import BinaryOp, Not, Proposition
-from agent_logic.core.predicates import ExistentialQuantifier, UniversalQuantifier
+from agent_logic.core.quantifiers import ExistentialQuantifier, UniversalQuantifier
 
 
 class ASTParser:

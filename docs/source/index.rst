@@ -1,11 +1,20 @@
-Welcome to Your Project
-========================
+Welcome to Agent Logic
+======================
+
+.. include:: ../../README.md
+   :parser: myst_parser.sphinx_
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: API Reference:
 
-   modules
+   generated/agent_logic
+   generated/agent_logic.core
+   generated/agent_logic.evaluation
+   generated/agent_logic.proofs
+   generated/agent_logic.models
+   generated/agent_logic.parsing
+   generated/agent_logic.utils
 
 API Reference
 =============
@@ -14,4 +23,4 @@ API Reference
    :toctree: generated
    :recursive:
 
-   logic  # <-- name of your src module
+   agent_logic

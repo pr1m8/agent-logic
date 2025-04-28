@@ -1,10 +1,12 @@
 from __future__ import annotations
 
-from typing import Dict, List, Literal
+from typing import Dict, List, Literal, Any, TYPE_CHECKING
 
 from pydantic import BaseModel
 
-from agent_logic.core.predicates import Predicate
+# Use TYPE_CHECKING to avoid circular imports
+if TYPE_CHECKING:
+    from agent_logic.core.predicates import Predicate  # noqa: F401
 
 
 class UniversalQuantifier(BaseModel):
@@ -12,7 +14,7 @@ class UniversalQuantifier(BaseModel):
 
     type: Literal["FORALL"] = "FORALL"
     variable: str
-    predicate: Predicate
+    predicate: Any  # Predicate
 
     def evaluate(self, context: Dict[str, List[bool]]) -> bool:
         """Evaluates ∀x P(x) over all values in context[variable]."""
@@ -36,6 +38,7 @@ class UniversalQuantifier(BaseModel):
 
     @classmethod
     def from_dict(cls, data: Dict) -> UniversalQuantifier:
+        from agent_logic.core.predicates import Predicate
         return cls(
             variable=data["variable"], predicate=Predicate.from_dict(data["predicate"])
         )
@@ -46,7 +49,7 @@ class ExistentialQuantifier(BaseModel):
 
     type: Literal["EXISTS"] = "EXISTS"
     variable: str
-    predicate: Predicate
+    predicate: Any  # Predicate
 
     def evaluate(self, context: Dict[str, List[bool]]) -> bool:
         """Evaluates ∃x P(x), checking if any value satisfies predicate."""
@@ -70,6 +73,15 @@ class ExistentialQuantifier(BaseModel):
 
     @classmethod
     def from_dict(cls, data: Dict) -> ExistentialQuantifier:
+        from agent_logic.core.predicates import Predicate
         return cls(
             variable=data["variable"], predicate=Predicate.from_dict(data["predicate"])
         )
+
+
+# Define aliases for better naming in imports
+ForAll = UniversalQuantifier
+Exists = ExistentialQuantifier
+
+# Add a base Quantifier type for type hints
+Quantifier = UniversalQuantifier | ExistentialQuantifier

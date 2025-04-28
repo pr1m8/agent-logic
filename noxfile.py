@@ -15,13 +15,15 @@ def build_docs(session: nox.Session) -> None:
     )
 
 
-@nox.session(name="docs-autobuild", python="3.12")
-def autobuild_docs(session: nox.Session) -> None:
-    """Auto-rebuild Sphinx docs on file changes."""
+@nox.session(name="view-docs", python="3.12")
+def view_docs(session: nox.Session) -> None:
+    """Serve and auto-rebuild Sphinx documentation with live reload."""
     session.install("poetry")
     session.run("poetry", "install", "--with", "docs", external=True)
+    session.install("sphinx-autobuild")
     session.run(
         "sphinx-autobuild",
         "docs/source",
         "docs/build/html",
+        "--open-browser",
     )

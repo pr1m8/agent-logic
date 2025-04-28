@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-Command-line interface for the logic package.
+Command-line interface for the agent-logic package.
 
-This module provides a command-line interface for interacting with the logic package,
+This module provides a command-line interface for interacting with the agent-logic package,
 including tools for validating proofs and other logical operations.
 
 Usage:
-    python -m logic.cli --help
-    python -m logic.cli validate path/to/proof.json
-    python -m logic.cli --log-level DEBUG validate path/to/proof.json
+    python -m agent_logic.cli --help
+    python -m agent_logic.cli validate path/to/proof.json
+    python -m agent_logic.cli --log-level DEBUG validate path/to/proof.json
 """
 
 import argparse

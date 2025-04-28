@@ -252,12 +252,8 @@ class BinaryOp(LogicalExpression):
 
         Returns:
             Dictionary representation of the binary operation.
-            Example: {
-                "type": "BinaryOp",
-                "left": {"type": "Proposition", "name": "P"},
-                "right": {"type": "Proposition", "name": "Q"},
-                "operator": "AND"
-            }
+            Example: {"type": "BinaryOp", "left": {"type": "Proposition", "name": "P"},
+            "right": {"type": "Proposition", "name": "Q"}, "operator": "AND"}
         """
         return {
             "type": "BinaryOp",
@@ -314,3 +310,77 @@ class BinaryOp(LogicalExpression):
             return cls(left=left, right=right, operator=data["operator"])
 
         raise ValueError("Invalid binary operation data")
+
+
+class And(BinaryOp):
+    """
+    Represents logical conjunction (AND, ∧).
+
+    Returns True if and only if both operands are True.
+    """
+
+    def __init__(self, left: LogicalExpression, right: LogicalExpression):
+        """Initialize an AND operation with left and right operands."""
+        super().__init__(left=left, right=right, operator="AND")
+
+
+class Or(BinaryOp):
+    """
+    Represents logical disjunction (OR, ∨).
+
+    Returns True if at least one operand is True.
+    """
+
+    def __init__(self, left: LogicalExpression, right: LogicalExpression):
+        """Initialize an OR operation with left and right operands."""
+        super().__init__(left=left, right=right, operator="OR")
+
+
+class Implies(BinaryOp):
+    """
+    Represents logical implication (IMPLIES, →).
+
+    Returns True if the left operand is False or the right operand is True.
+    """
+
+    def __init__(self, left: LogicalExpression, right: LogicalExpression):
+        """Initialize an IMPLIES operation with left and right operands."""
+        super().__init__(left=left, right=right, operator="IMPLIES")
+
+
+class Iff(BinaryOp):
+    """
+    Represents logical biconditional (IFF, ↔).
+
+    Returns True if both operands have the same truth value.
+    """
+
+    def __init__(self, left: LogicalExpression, right: LogicalExpression):
+        """Initialize an IFF operation with left and right operands."""
+        super().__init__(left=left, right=right, operator="IFF")
+
+
+class Xor(BinaryOp):
+    """
+    Represents logical exclusive disjunction (XOR, ⊕).
+
+    Returns True if exactly one operand is True.
+    """
+
+    def __init__(self, left: LogicalExpression, right: LogicalExpression):
+        """Initialize a XOR operation with left and right operands."""
+        super().__init__(left=left, right=right, operator="XOR")
+
+    def evaluate(self, context: Dict[str, bool]) -> bool:
+        """
+        Evaluates the XOR operation given a truth assignment.
+
+        Args:
+            context: Dictionary mapping variable names to truth values.
+
+        Returns:
+            Boolean result of XOR operation (True if exactly one operand is True).
+        """
+        left_val = self.left.evaluate(context)
+        right_val = self.right.evaluate(context)
+        return left_val != right_val
