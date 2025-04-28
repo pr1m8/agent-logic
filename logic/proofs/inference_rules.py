@@ -32,7 +32,7 @@ class InferenceRules:
         """
         if isinstance(p_implies_q, BinaryOp) and p_implies_q.operator == "IMPLIES":
             if isinstance(not_q, Not) and not_q.operand == p_implies_q.right:
-                return Not(p_implies_q.left)  # Return ¬P
+                return Not(operand=p_implies_q.left)  # Return ¬P
         raise ValueError("Invalid Modus Tollens application.")
 
     @staticmethod
@@ -73,7 +73,7 @@ class InferenceRules:
         Law of Excluded Middle: P ∨ ¬P is always true.
         ⊢ (P ∨ ¬P)
         """
-        return BinaryOp(p, Not(p), "OR")
+        return BinaryOp(left=p, right=Not(operand=p), operator="OR")
 
     @staticmethod
     def proof_by_contradiction(
@@ -84,7 +84,7 @@ class InferenceRules:
         P ⊢ ⊥ ⟹ ¬P
         """
         if contradiction is None:  # ⊥ is represented as None
-            return Not(assumption)
+            return Not(operand=assumption)
         raise ValueError("Invalid Proof by Contradiction application.")
 
     @staticmethod
@@ -128,7 +128,7 @@ class InferenceRules:
             and p_implies_false.operator == "IMPLIES"
         ):
             if p_implies_false.right is None:  # ⊥ is represented as None
-                return Not(p_implies_false.left)
+                return Not(operand=p_implies_false.left)
         raise ValueError("Invalid Constructive Negation application.")
 
     @staticmethod
@@ -145,9 +145,17 @@ class InferenceRules:
                 and expression.right.operator == "OR"
             ):
                 return BinaryOp(
-                    BinaryOp(expression.left, expression.right.left, "AND"),
-                    BinaryOp(expression.left, expression.right.right, "AND"),
-                    "OR",
+                    left=BinaryOp(
+                        left=expression.left,
+                        right=expression.right.left,
+                        operator="AND",
+                    ),
+                    right=BinaryOp(
+                        left=expression.left,
+                        right=expression.right.right,
+                        operator="AND",
+                    ),
+                    operator="OR",
                 )
             elif (
                 expression.operator == "OR"
@@ -155,9 +163,15 @@ class InferenceRules:
                 and expression.right.operator == "AND"
             ):
                 return BinaryOp(
-                    BinaryOp(expression.left, expression.right.left, "OR"),
-                    BinaryOp(expression.left, expression.right.right, "OR"),
-                    "AND",
+                    left=BinaryOp(
+                        left=expression.left, right=expression.right.left, operator="OR"
+                    ),
+                    right=BinaryOp(
+                        left=expression.left,
+                        right=expression.right.right,
+                        operator="OR",
+                    ),
+                    operator="AND",
                 )
         return expression
 
@@ -175,11 +189,13 @@ class InferenceRules:
                 and expression.right.operator == expression.operator
             ):
                 return BinaryOp(
-                    BinaryOp(
-                        expression.left, expression.right.left, expression.operator
+                    left=BinaryOp(
+                        left=expression.left,
+                        right=expression.right.left,
+                        operator=expression.operator,
                     ),
-                    expression.right.right,
-                    expression.operator,
+                    right=expression.right.right,
+                    operator=expression.operator,
                 )
         return expression
 
@@ -203,7 +219,7 @@ class InferenceRules:
         ):
             if p_or_r.left == p_implies_q.left and p_or_r.right == r_implies_s.left:
                 return BinaryOp(
-                    p_implies_q.right, r_implies_s.right, "OR"
+                    left=p_implies_q.right, right=r_implies_s.right, operator="OR"
                 )  # Return (Q ∨ S)
         raise ValueError("Invalid Constructive Dilemma application.")
 
@@ -233,7 +249,9 @@ class InferenceRules:
                     and not_q_or_not_s.right.operand == r_implies_s.right
                 ):
                     return BinaryOp(
-                        Not(p_implies_q.left), Not(r_implies_s.left), "OR"
+                        left=Not(operand=p_implies_q.left),
+                        right=Not(operand=r_implies_s.left),
+                        operator="OR",
                     )  # Return (¬P ∨ ¬R)
         raise ValueError("Invalid Destructive Dilemma application.")
 
@@ -245,7 +263,7 @@ class InferenceRules:
         Conjunction Introduction: If P is true and Q is true, then (P ∧ Q) is true.
         P, Q ⊢ (P ∧ Q)
         """
-        return BinaryOp(p, q, "AND")
+        return BinaryOp(left=p, right=q, operator="AND")
 
     @staticmethod
     def conjunction_elimination(p_and_q: LogicalExpression) -> List[LogicalExpression]:
@@ -263,7 +281,7 @@ class InferenceRules:
         Addition: If P is true, then (P ∨ Q) must be true.
         P ⊢ (P ∨ Q)
         """
-        return BinaryOp(p, q, "OR")
+        return BinaryOp(left=p, right=q, operator="OR")
 
     @staticmethod
     def biconditional_elimination(
@@ -275,8 +293,8 @@ class InferenceRules:
         """
         if isinstance(p_iff_q, BinaryOp) and p_iff_q.operator == "IFF":
             return [
-                BinaryOp(p_iff_q.left, p_iff_q.right, "IMPLIES"),
-                BinaryOp(p_iff_q.right, p_iff_q.left, "IMPLIES"),
+                BinaryOp(left=p_iff_q.left, right=p_iff_q.right, operator="IMPLIES"),
+                BinaryOp(left=p_iff_q.right, right=p_iff_q.left, operator="IMPLIES"),
             ]
         raise ValueError("Invalid Biconditional Elimination application.")
 
@@ -299,7 +317,7 @@ class InferenceRules:
                 and p_implies_q.right == q_implies_p.left
             ):
                 return BinaryOp(
-                    p_implies_q.left, p_implies_q.right, "IFF"
+                    left=p_implies_q.left, right=p_implies_q.right, operator="IFF"
                 )  # Return (P ↔ Q)
         raise ValueError("Invalid Biconditional Introduction application.")
 
@@ -314,7 +332,7 @@ class InferenceRules:
             and p_implies_false.operator == "IMPLIES"
         ):
             if p_implies_false.right is None:  # ⊥ is represented as None
-                return Not(p_implies_false.left)
+                return Not(operand=p_implies_false.left)
         raise ValueError("Invalid Negation Introduction application.")
 
     @staticmethod
