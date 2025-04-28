@@ -1,0 +1,33 @@
+# .github/workflows/publish.yml
+name: Publish Python Package
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'   # only trigger when you push a version tag
+
+jobs:
+  publish:
+    name: Build and Publish to PyPI
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Poetry
+        run: |
+          pip install poetry
+
+      - name: Configure Poetry
+        run: |
+          poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
+
+      - name: Build and publish
+        run: |
+          poetry publish --build

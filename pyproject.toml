@@ -1,13 +1,14 @@
 [project]
 name = "agent-logic"
 version = "0.1.0"
-authors = [{ name = "Your Name", email = "you@example.com" }]
+authors = [{ name = "William R. Astley", email = "wrastley@gmail.com" }]
 license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.12,<4"
 dependencies = ["pydantic (>=2.10.6,<3.0.0)"]
 description = "Modular symbolic logic system supporting proofs, predicates, inference rules, truth tables, and LLM integration with Pydantic models."
-
+documentation = "https://agent-logic.readthedocs.io/"
+repository = "https://github.com/pr1m8/agent-logic"
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"

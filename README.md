@@ -112,10 +112,9 @@ All models use **Pydantic v2**, meaning:
 pip install agent-logic
 ```
 
-_(Coming soon to PyPI. Install locally for now.)_
-
+or from git: 
 ```bash
-git clone https://github.com/yourusername/agent-logic.git
+git clone https://github.com/pr1m8/agent-logic.git
 cd agent-logic
 poetry install
 ```
