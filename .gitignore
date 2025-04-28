@@ -56,3 +56,9 @@ poetry.lock
 .DS_Store
 .vscode/
 .idea/
+
+# Ruff
+.ruff_cache/
+
+# Black
+.black_cache/
