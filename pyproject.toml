@@ -13,8 +13,6 @@ requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 
-
-
 [tool.poetry.group.docs.dependencies]
 sphinx = "^8.2.0"
 sphinxcontrib-jquery = "^4.1"
@@ -46,3 +44,11 @@ sphinx-multiversion = "^0.2.4"
 sphinxcontrib-versioning = "^2.2.1"
 sphinxext-opengraph = "^0.10.0"
 sphinx-needs = "^5.1.0"
+nox = "^2025.2.9"
+
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+black = "^25.1.0"
+ruff = "^0.11.7"
