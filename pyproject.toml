@@ -1,7 +1,6 @@
 [project]
 name = "logic"
 version = "0.1.0"
-description = ""
 authors = [{ name = "Your Name", email = "you@example.com" }]
 license = { text = "MIT" }
 readme = "README.md"
