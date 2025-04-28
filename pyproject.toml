@@ -7,7 +7,7 @@ license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = ["pydantic (>=2.10.6,<3.0.0)"]
-
+description = "Modular symbolic logic system supporting proofs, predicates, inference rules, truth tables, and LLM integration with Pydantic models."
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
