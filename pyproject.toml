@@ -2,15 +2,11 @@
 name = "logic"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "Your Name",email = "you@example.com"}
-]
-license = {text = "MIT"}
+authors = [{ name = "Your Name", email = "you@example.com" }]
+license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [
-    "pydantic (>=2.10.6,<3.0.0)"
-]
+dependencies = ["pydantic (>=2.10.6,<3.0.0)"]
 
 
 [build-system]

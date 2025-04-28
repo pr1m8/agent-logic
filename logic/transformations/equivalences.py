@@ -1,5 +1,6 @@
 from logic.core.base import LogicalExpression
-from logic.core.operations import Not, BinaryOp
+from logic.core.operations import BinaryOp, Not
+
 
 class EquivalenceRules:
     """Defines common logical equivalences for transformations."""
@@ -36,9 +37,15 @@ class EquivalenceRules:
         If (A ∧ ¬A) is true, then ⊥ (false) is reached.
         """
         if isinstance(expression, BinaryOp) and expression.operator == "AND":
-            if isinstance(expression.left, Not) and expression.left.operand == expression.right:
+            if (
+                isinstance(expression.left, Not)
+                and expression.left.operand == expression.right
+            ):
                 return None  # ⊥ (contradiction)
-            elif isinstance(expression.right, Not) and expression.right.operand == expression.left:
+            elif (
+                isinstance(expression.right, Not)
+                and expression.right.operand == expression.left
+            ):
                 return None  # ⊥ (contradiction)
         return expression
 
@@ -50,17 +57,24 @@ class EquivalenceRules:
         (A ∨ (B ∧ C)) ≡ ((A ∨ B) ∧ (A ∨ C))
         """
         if isinstance(expression, BinaryOp):
-            if expression.operator == "AND" and isinstance(expression.right, BinaryOp) and expression.right.operator == "OR":
+            if (
+                expression.operator == "AND"
+                and isinstance(expression.right, BinaryOp)
+                and expression.right.operator == "OR"
+            ):
                 return BinaryOp(
                     BinaryOp(expression.left, expression.right.left, "AND"),
                     BinaryOp(expression.left, expression.right.right, "AND"),
                     "OR",
                 )
-            elif expression.operator == "OR" and isinstance(expression.right, BinaryOp) and expression.right.operator == "AND":
+            elif (
+                expression.operator == "OR"
+                and isinstance(expression.right, BinaryOp)
+                and expression.right.operator == "AND"
+            ):
                 return BinaryOp(
                     BinaryOp(expression.left, expression.right.left, "OR"),
                     BinaryOp(expression.left, expression.right.right, "OR"),
                     "AND",
                 )
         return expression
-    

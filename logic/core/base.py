@@ -1,6 +1,9 @@
 from __future__ import annotations
+
+from typing import Dict, List
+
 from pydantic import BaseModel
-from typing import List, Dict, Optional, Union
+
 
 class LogicalExpression(BaseModel):
     """Recursive base class for logical expressions."""
@@ -8,7 +11,7 @@ class LogicalExpression(BaseModel):
     def evaluate(self, context: Dict[str, bool]) -> bool:
         """Recursively evaluates the expression under a given truth assignment."""
         raise NotImplementedError
-    
+
     def variables(self) -> List[str]:
         """Recursively extracts all variables in the expression."""
         raise NotImplementedError

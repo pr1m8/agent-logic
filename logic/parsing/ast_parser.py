@@ -1,8 +1,10 @@
 from typing import Dict
+
 from logic.core.base import LogicalExpression
-from logic.core.operations import Proposition, Not, BinaryOp
 from logic.core.functions import Function, Relation
-from logic.core.predicates import UniversalQuantifier, ExistentialQuantifier
+from logic.core.operations import BinaryOp, Not, Proposition
+from logic.core.predicates import ExistentialQuantifier, UniversalQuantifier
+
 
 class ASTParser:
     """Parses structured data (JSON/dict) into logical expressions."""
@@ -10,7 +12,7 @@ class ASTParser:
     @staticmethod
     def parse_dict(data: Dict) -> LogicalExpression:
         """Recursively parses a JSON/dict representation into an expression."""
-        
+
         if data["type"] == "Proposition":
             return Proposition.from_dict(data)
 

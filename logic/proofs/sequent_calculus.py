@@ -1,14 +1,19 @@
 from __future__ import annotations
+
+from typing import List, Optional
+
 from pydantic import BaseModel
-from typing import List, Tuple, Optional
+
 from logic.core.base import LogicalExpression
 from logic.core.operations import BinaryOp, Not
+
 
 class Sequent(BaseModel):
     """
     Represents a sequent in sequent calculus:
     Γ ⊢ Δ (Hypotheses imply conclusions)
     """
+
     hypotheses: List[LogicalExpression]
     conclusions: List[LogicalExpression]
 
@@ -16,6 +21,7 @@ class Sequent(BaseModel):
         hyp_str = ", ".join(str(h) for h in self.hypotheses)
         concl_str = ", ".join(str(c) for c in self.conclusions)
         return f"{hyp_str} ⊢ {concl_str}"
+
 
 class SequentCalculus:
     """Implements sequent calculus inference rules for formal proofs."""
@@ -33,7 +39,9 @@ class SequentCalculus:
                 new_hypotheses = seq.hypotheses.copy()
                 new_hypotheses.remove(hyp)
                 new_hypotheses.extend([hyp.left, hyp.right])
-                new_sequents.append(Sequent(hypotheses=new_hypotheses, conclusions=seq.conclusions))
+                new_sequents.append(
+                    Sequent(hypotheses=new_hypotheses, conclusions=seq.conclusions)
+                )
         return new_sequents if new_sequents else [seq]
 
     @staticmethod
@@ -66,8 +74,12 @@ class SequentCalculus:
                 new_hyp2.remove(hyp)
                 new_hyp1.append(hyp.left)
                 new_hyp2.append(hyp.right)
-                new_sequents.append(Sequent(hypotheses=new_hyp1, conclusions=seq.conclusions))
-                new_sequents.append(Sequent(hypotheses=new_hyp2, conclusions=seq.conclusions))
+                new_sequents.append(
+                    Sequent(hypotheses=new_hyp1, conclusions=seq.conclusions)
+                )
+                new_sequents.append(
+                    Sequent(hypotheses=new_hyp2, conclusions=seq.conclusions)
+                )
         return new_sequents if new_sequents else [seq]
 
     @staticmethod
@@ -97,7 +109,11 @@ class SequentCalculus:
                 new_hyp = seq.hypotheses.copy()
                 new_hyp.remove(hyp)
                 new_sequents.append(Sequent(hypotheses=new_hyp, conclusions=[hyp.left]))
-                new_sequents.append(Sequent(hypotheses=[hyp.right] + new_hyp, conclusions=seq.conclusions))
+                new_sequents.append(
+                    Sequent(
+                        hypotheses=[hyp.right] + new_hyp, conclusions=seq.conclusions
+                    )
+                )
                 return new_sequents
         return [seq]
 
@@ -141,5 +157,7 @@ class SequentCalculus:
         if len(seq.conclusions) >= 1:
             new_conclusions = seq.conclusions.copy()
             a = new_conclusions.pop(0)
-            return Sequent(hypotheses=seq.hypotheses + [Not(a)], conclusions=[None])  # ⊥ represented as None
+            return Sequent(
+                hypotheses=seq.hypotheses + [Not(a)], conclusions=[None]
+            )  # ⊥ represented as None
         return None

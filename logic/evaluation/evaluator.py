@@ -1,16 +1,18 @@
-from typing import Dict, Any
+from typing import Any, Dict
+
 from logic.core.base import LogicalExpression
-from logic.core.operations import Proposition, Not, BinaryOp
 from logic.core.functions import Function, Relation
-from logic.core.predicates import UniversalQuantifier, ExistentialQuantifier
+from logic.core.operations import BinaryOp, Not, Proposition
+from logic.core.predicates import ExistentialQuantifier, UniversalQuantifier
+
 
 class Evaluator:
     """Evaluates logical expressions recursively with variable assignments."""
-    
+
     @staticmethod
     def evaluate(expression: LogicalExpression, context: Dict[str, Any]) -> bool:
         """Evaluates a logical expression under a given context of truth values."""
-        
+
         if isinstance(expression, Proposition):
             return expression.evaluate(context)
 
