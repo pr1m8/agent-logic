@@ -6,13 +6,17 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'agent-logic'
-copyright = '2025, William R. Astley (Pr1m8)'
-author = 'William R. Astley (Pr1m8)'
-release = '0.1.0'
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../src'))
+
+
+project = "agent-logic"
+copyright = "2025, William R. Astley (Pr1m8)"
+author = "William R. Astley (Pr1m8)"
+release = "0.1.0"
+
+
+sys.path.insert(0, os.path.abspath("../../src"))
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
@@ -29,19 +33,18 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_design",
     "sphinx_inline_tabs",
-    "sphinx_tabs.tabs",
+    # "sphinx_tabs.tabs",
     "myst_parser",
     "sphinxcontrib.mermaid",
     "sphinxcontrib.youtube",
     "sphinxext.opengraph",
     "sphinx_rtd_theme",  # optional backup
-    "sphinx_press_theme",  # optional backup
     "sphinx_needs",  # advanced requirements diagrams
     "sphinx_sitemap",  # sitemap.xml for SEO
 ]
 
 
-templates_path = ['_templates']
+templates_path = ["_templates"]
 exclude_patterns = []
 
 
@@ -65,5 +68,5 @@ myst_enable_extensions = [
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'furo'
-html_static_path = ['_static']
+html_theme = "furo"
+html_static_path = ["_static"]
