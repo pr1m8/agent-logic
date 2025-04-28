@@ -4,12 +4,11 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.12"
-
-python:
-  install:
-    - method: poetry
-      path: .   # <--- This is the critical missing piece
-      extras: ["docs"]
+  jobs:
+    pre_install:
+      - pip install poetry
+    install:
+      - poetry install --with docs
 
 sphinx:
   configuration: docs/source/conf.py
