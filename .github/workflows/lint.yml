@@ -28,8 +28,8 @@ jobs:
 
       - name: Run Ruff
         run: |
-          poetry run ruff check src/ docs/ tests/
+          poetry run ruff check agent_logic/ docs/ tests/
 
       - name: Run Black (check only)
         run: |
-          poetry run black --check src/ docs/ tests/
+          poetry run black --check agent_logic/ docs/ tests/
