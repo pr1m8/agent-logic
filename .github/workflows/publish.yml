@@ -1,10 +1,9 @@
-# .github/workflows/publish.yml
 name: Publish Python Package
 
 on:
   push:
     tags:
-      - 'v*.*.*'   # only trigger when you push a version tag
+      - 'v*.*.*'
 
 jobs:
   publish:
@@ -21,13 +20,10 @@ jobs:
           python-version: "3.12"
 
       - name: Install Poetry
-        run: |
-          pip install poetry
+        run: pip install poetry
 
-      - name: Configure Poetry
-        run: |
-          poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
+      - name: Configure Poetry with PyPI Token
+        run: poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
 
-      - name: Build and publish
-        run: |
-          poetry publish --build
+      - name: Build and Publish
+        run: poetry publish --build
