@@ -9,7 +9,7 @@
 import os
 import sys
 
-project = "agent-logic"
+project = "agentic-logic"
 copyright = "2025, William R. Astley (Pr1m8)"
 author = "William R. Astley (Pr1m8)"
 release = "0.1.0"
