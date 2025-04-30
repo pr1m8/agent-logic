@@ -1,3 +1,7 @@
+"""
+    This file is used to build the documentation and view it locally.
+    It is also used to run the tests.
+"""
 import nox
 
 
