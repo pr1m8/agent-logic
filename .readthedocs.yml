@@ -7,7 +7,18 @@ build:
 
 python:
   install:
+    - method: pip
+      path: .
     - requirements: docs/requirements.txt
 
+  system_packages: true
+
+build:
+  jobs:
+    pre_build:
+      - pip install nox
+    build:
+      - nox -s docs
+
 sphinx:
-  configuration: docs/source/conf.py
+  configuration: docs/source/conf.py  # still needed for RTD to register this project
