@@ -1,28 +1,26 @@
 # Configuration file for the Sphinx documentation builder.
-#
-# For the full list of built-in configuration values, see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
-
-# -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 import os
 import sys
 
+# -- Project information -----------------------------------------------------
+
 project = "agentic-logic"
-copyright = "2025, William R. Astley (Pr1m8)"
 author = "William R. Astley (Pr1m8)"
+copyright = "2025, William R. Astley (Pr1m8)"
 release = "0.1.0"
 
+# -- Path setup --------------------------------------------------------------
 
 sys.path.insert(0, os.path.abspath("../../agent_logic"))
-# -- General configuration ---------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-# Add any Sphinx extension module names here
+# -- General configuration ---------------------------------------------------
+
+master_doc = "index"  # <- ✅ Ensures Sphinx builds from index.rst
+
 extensions = [
     "sphinx.ext.autodoc",
-    "sphinx.ext.napoleon",  # for Google and NumPy docstrings
+    "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
@@ -32,24 +30,17 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_design",
     "sphinx_inline_tabs",
-    # "sphinx_tabs.tabs",
     "myst_parser",
     "sphinxcontrib.mermaid",
     "sphinxcontrib.youtube",
     "sphinxext.opengraph",
-    "sphinx_rtd_theme",  # optional backup
-    "sphinx_needs",  # advanced requirements diagrams
-    "sphinx_sitemap",  # sitemap.xml for SEO
+    "sphinx_rtd_theme",
+    "sphinx_needs",
+    "sphinx_sitemap",
 ]
 
-html_baseurl = "https://agent-logic.readthedocs.io/en/latest/"
-
-templates_path = ["_templates"]
-exclude_patterns = []
-
-
-autosummary_generate = True
-autodoc_typehints = "description"  # clean type hints in docstrings
+autosummary_generate = True  # <- ✅ Generates the generated/*.rst files
+autodoc_typehints = "description"
 autodoc_default_options = {
     "members": True,
     "undoc-members": True,
@@ -58,15 +49,19 @@ autodoc_default_options = {
 }
 todo_include_todos = True
 
-# Myst-parser settings if using Markdown
+templates_path = ["_templates"]
+exclude_patterns = []
+
+# -- Myst-parser configuration -----------------------------------------------
+
 myst_enable_extensions = [
     "deflist",
     "fieldlist",
     "html_image",
 ]
 
-# -- Options for HTML output -------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
+# -- HTML output -------------------------------------------------------------
 
 html_theme = "furo"
 html_static_path = ["_static"]
+html_baseurl = "https://agent-logic.readthedocs.io/en/latest/"
