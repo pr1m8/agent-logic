@@ -6,7 +6,8 @@ build:
     python: "3.12"
   jobs:
     build:
-      html: []
+      html:
+        - sphinx-build -b html docs/source $READTHEDOCS_OUTPUT/html
 
 python:
   install:
