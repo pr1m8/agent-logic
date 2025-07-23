@@ -1,18 +1,27 @@
 [project]
 name = "agent-logic"
 version = "0.1.2"
-authors = [{ name = "William R. Astley", email = "wrastley@gmail.com" }]
-license = { text = "MIT" }
-readme = "README.md"
-requires-python = ">=3.12,<4"
-dependencies = ["pydantic (>=2.10.6,<3.0.0)"]
 description = "Modular symbolic logic system supporting proofs, predicates, inference rules, truth tables, and LLM integration with Pydantic models."
-documentation = "https://agent-logic.readthedocs.io/"
-repository = "https://github.com/pr1m8/agent-logic"
+
+authors = [
+  { name = "William R. Astley", email = "wrastley@gmail.com" }
+]
+
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.12,<4"
+dependencies = ["pydantic >=2.10.6,<3.0.0"]
+
+# ✅ These are the official link slots shown on PyPI
+urls = { 
+  "Homepage" = "https://github.com/pr1m8/agent-logic",
+  "Documentation" = "https://agent-logic.readthedocs.io/",
+  "Source" = "https://github.com/pr1m8/agent-logic",
+  "Bug Tracker" = "https://github.com/pr1m8/agent-logic/issues",
+}
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
-
 
 [tool.poetry.group.docs.dependencies]
 sphinx = "^8.2.0"
