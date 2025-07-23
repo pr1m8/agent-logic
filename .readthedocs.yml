@@ -5,10 +5,7 @@ build:
   tools:
     python: "3.12"
   jobs:
-    pre_build:
-      - pip install nox
-    build:
-      cmd: nox -s docs
+    build: html  # default RTD HTML build
 
 python:
   install:
